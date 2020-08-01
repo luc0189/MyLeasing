@@ -13,7 +13,7 @@ namespace MyLeasing.Web.Data
         public DbSet<Owner> Owners { get; set; }
         public DbSet<Property> Properties { get; set; }
         public DbSet<PropertyImage> PropertyImages { get; set; }
-        public DbSet<PropertyType> PropertyType { get; set; }
+        public DbSet<PropertyType> PropertyTypes { get; set; }
     }
 
 }
