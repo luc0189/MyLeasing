@@ -28,7 +28,9 @@ namespace MyLeasing.Web.Helpers
                 .ToList();
             list.Insert(0, new SelectListItem
             {
-                Text = "Select a Property Type..."
+                Text = "Select a Property Type...",
+                Value="0"
+
             });
             return list;
         }

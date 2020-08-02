@@ -17,3 +17,4 @@ namespace MyLeasing.Web.Models
         public IEnumerable<SelectListItem> PropertyTypes { get; set; }
     }
 }
+
