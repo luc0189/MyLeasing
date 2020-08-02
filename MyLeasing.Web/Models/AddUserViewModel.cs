@@ -10,7 +10,6 @@ namespace MyLeasing.Web.Models
         [EmailAddress]
         public string Username { get; set; }
 
-       
         [Display(Name = "Password")]
         [Required(ErrorMessage = "The field {0} is mandatory.")]
         [DataType(DataType.Password)]
