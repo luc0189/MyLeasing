@@ -1,4 +1,6 @@
 ﻿using System.Collections.Generic;
+using System.Linq;
+using System.Reflection;
 
 namespace MyLeasing.Common.Models
 {
@@ -29,5 +31,9 @@ namespace MyLeasing.Common.Models
         public ICollection<PropertyImageResponse> PropertyImages { get; set; }
 
         public ICollection<ContractResponse> Contracts { get; set; }
+        public string FirstImage => PropertyImages == null || PropertyImages.Count == 0
+            ?  "https://cdn4.iconfinder.com/data/icons/twitter-29/512/159_Twitter_Image_Picture-64.png"
+        : PropertyImages.FirstOrDefault().ImageUrl;
+         
     }
 }
