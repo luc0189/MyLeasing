@@ -1,8 +1,10 @@
-﻿using MyLeasing.Common.Models;
+﻿using ImTools;
+using MyLeasing.Common.Models;
 using MyLeasing.Common.Services;
 using Prism.Commands;
 using Prism.Mvvm;
 using Prism.Navigation;
+
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -11,6 +13,7 @@ namespace MyLeasing.Prism.ViewModels
 {
     public class LoginPageViewModel : ViewModelBase
     {
+        private readonly INavigationService _navigationService;
         private readonly IApiService _apiService;
         private string _password;
         private bool _isRunning;
@@ -23,6 +26,7 @@ namespace MyLeasing.Prism.ViewModels
         {
             Title = "Login ";
             IsEnable = true;
+            _navigationService = navigationService;
             _apiService = apiService;
         }
        
@@ -74,16 +78,43 @@ namespace MyLeasing.Prism.ViewModels
             };
             
             var response = await _apiService.GetTokenAsync(url, "Account", "/CreateToken", request);
-            IsEnable = true;
-            IsRunning = false;
+            
             if (!response.IsSuccess)
             {
-               await App.Current.MainPage.DisplayAlert("Error", "User or password incorrect.", "Accept");
+                IsEnable = true;
+                IsRunning = false;
+                await App.Current.MainPage.DisplayAlert("Error", "User or password incorrect.", "Accept");
                 Password = string.Empty;
                 return;
             }
             var token = response.Result;
-            await App.Current.MainPage.DisplayAlert("Ok", "OOOOoooOOO SI", "Accept");
+            var response2 = await _apiService.GetOwnerByEmailAsync
+                (
+                url,
+                "api",
+                "/Owners/GetOwnerByEmail",
+                "bearer",
+                token.Token,
+                Email
+                );
+            if (!response2.IsSuccess)
+            {
+                
+                await App.Current.MainPage.DisplayAlert("Error", "Problem. call Soport: 310795..", "Accept");
+                IsEnable = false;
+                IsRunning = true;
+                return;
+            }
+            var owner = response2.Result;
+            var parameters = new NavigationParameters
+            {
+                { "owner", owner }
+            };
+           
+            await _navigationService.NavigateAsync("PropertiesPage",parameters);
+           
+            IsRunning = false;
+            IsEnable = true;
         }
 
         
