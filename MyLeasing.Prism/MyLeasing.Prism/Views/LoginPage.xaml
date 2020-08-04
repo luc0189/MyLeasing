@@ -25,10 +25,13 @@
             IsRunning="{Binding IsRunning}"
             VerticalOptions="CenterAndExpand"/>
         <Button
-            
+            BackgroundColor="#009FFC"
+            CornerRadius="15"
             Command="{Binding LoginCommand}"
+            
             IsEnabled="{Binding IsEnable}"
-            Text="Login Lcs"/>
+            Text="Login Lcs"
+            TextColor="White"/>
         
 
     </StackLayout>         
