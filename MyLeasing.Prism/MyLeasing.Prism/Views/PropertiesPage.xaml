@@ -23,14 +23,10 @@
                         <Frame
                             CornerRadius="4"
                             Margin="0,0,0,5">
-                            <Grid>
-                                <Grid.ColumnDefinitions>
-                                    <ColumnDefinition Width="Auto"/>
-                                    <ColumnDefinition Width="*"/>
-                                    <ColumnDefinition Width="Auto"/>
-                                </Grid.ColumnDefinitions>
+                            <StackLayout>
                                 <ffimageloading:CachedImage
 	                            Grid.Column="0"
+                                    
 	                            Source="{Binding FirstImage}"
 	                            LoadingPlaceholder= "LoaderImage"
 	                            ErrorPlaceholder= "ErrorImage"
@@ -38,69 +34,78 @@
 	                            RetryCount= "3"
 	                            RetryDelay= "600"
 	                            DownsampleToViewSize = "true"
-	                            WidthRequest="100"/>
+	                            WidthRequest="200"
+                                HeightRequest="200"/>
 
-
-                                <Grid Grid.Column="1">
+                                <Grid>
 
                                     <Grid.ColumnDefinitions>
                                         <ColumnDefinition Width="Auto"/>
                                         <ColumnDefinition Width="*"/>
-
+                                        <ColumnDefinition Width="Auto"/>
                                     </Grid.ColumnDefinitions>
-                                    <Grid.RowDefinitions>
-                                        <RowDefinition Height="Auto"/>
-                                        <RowDefinition Height="Auto"/>
-                                        <RowDefinition Height="Auto"/>
-                                        <RowDefinition Height="Auto"/>
-                                        <RowDefinition Height="Auto"/>
-                                    </Grid.RowDefinitions>
+                                   
 
-                                    <Label
+                                    <Grid Grid.Column="0">
+
+                                        <Grid.ColumnDefinitions>
+                                            <ColumnDefinition Width="Auto"/>
+                                            <ColumnDefinition Width="*"/>
+
+                                        </Grid.ColumnDefinitions>
+                                        <Grid.RowDefinitions>
+                                            <RowDefinition Height="Auto"/>
+                                            <RowDefinition Height="Auto"/>
+                                            <RowDefinition Height="Auto"/>
+                                            <RowDefinition Height="Auto"/>
+                                            <RowDefinition Height="Auto"/>
+                                        </Grid.RowDefinitions>
+
+                                        <Label
                                     	Grid.Row="0"
                                         Grid.Column="0"
                                     	FontAttributes="Bold"
                                     	Text="Neighborhood"
                                     	/>
 
-                                    <Label
+                                        <Label
                                         Grid.Row="0"
                                         Grid.Column="1"
                                     	Text="{Binding Neighborhood}"/>
-                                    <Label
+                                        <Label
                                     	Grid.Row="1"
                                         Grid.Column="0"
                                     	FontAttributes="Bold"
                                     	Text="Address"
                                     	/>
 
-                                    <Label
+                                        <Label
                                         Grid.Row="1"
                                         Grid.Column="1"
                                     	Text="{Binding Address}"/>
-                                    <Label
+                                        <Label
                                     	Grid.Row="2"
                                         Grid.Column="0"
                                     	FontAttributes="Bold"
                                     	Text="Price"
                                     	/>
 
-                                    <Label
+                                        <Label
                                         Grid.Row="2"
                                         Grid.Column="1"
                                     	Text="{Binding Price, StringFormat='{0:C2}'}"/>
-                                    <Label
+                                        <Label
                                     	Grid.Row="3"
                                         Grid.Column="0"
                                     	FontAttributes="Bold"
                                     	Text="Type"
                                     	/>
 
-                                    <Label
+                                        <Label
                                         Grid.Row="3"
                                         Grid.Column="1"
                                     	Text="{Binding PropertyType}"/>
-                                    <Label
+                                        <Label
                                     	Grid.Row="4"
                                         Grid.Column="0"
                                     	FontAttributes="Bold"
@@ -108,21 +113,24 @@
                                     VerticalOptions="Center"
                                     	/>
 
-                                    <Switch
+                                        <CheckBox
                                         Grid.Row="4"
                                         Grid.Column="1"
                                         HorizontalOptions="Start"
                                         IsEnabled="False"
-                                    	IsToggled="{Binding IsAvailable}"/>
+                                        Color="#009FFC"
+                                    	IsChecked="{Binding IsAvailable}"/>
 
 
-                                </Grid>
-                                <Image
+                                    </Grid>
+                                    <Image
                                 Grid.Column="2"
                                 Source="ic_launcher">
 
-                                </Image>
-                            </Grid>
+                                    </Image>
+                                </Grid>
+                            </StackLayout>
+                           
                         </Frame>
                     </ViewCell>
                 </DataTemplate>
